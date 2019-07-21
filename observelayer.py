@@ -31,7 +31,7 @@ class ObserveItem(object):
         self.timer = None
         self.coap = serv
 
-    # timer for notification procedure is set at (pmax - pmin)/2
+    # timer for notification procedure is set at (pmax + pmin)/2
     def pmax_timer(self):
         self.coap.notify(self.transaction.resource)
 
@@ -46,7 +46,7 @@ class ObserveItem(object):
         if pmax == 0:
             return
         else:
-            self.timer = threading.Timer((pmax-pmin)/2, self.pmax_timer)
+            self.timer = threading.Timer((pmax+pmin)/2, self.pmax_timer)
             self.timer.start()
 
 
